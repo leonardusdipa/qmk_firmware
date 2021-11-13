@@ -8,6 +8,7 @@ import time
 
 from math import floor
 from os.path import dirname
+from subprocess import Popen, PIPE, STDOUT
 from blessings import Terminal
 
 class Heatmap(object):
@@ -121,6 +122,7 @@ class Heatmap(object):
 
         for (c, r) in self.log:
             coords = self.coord(c, r)
+            b, n = coords
             cap = self.max_cnt
             if cap == 0:
                 cap = 1
@@ -300,7 +302,7 @@ def main(opts):
                         break
                     if not process_line(line, heatmaps, opts):
                         continue
-        except Exception:
+        except:
             pass
 
         stamped_log = open ("%s/stamped-log" % (out_dir), "a+")

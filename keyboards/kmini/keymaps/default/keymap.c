@@ -41,8 +41,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 void led_set_user(uint8_t usb_led) {
     if (usb_led & (1<<USB_LED_CAPS_LOCK)) {
-        writePinLow(B1);
+        PORTB &= ~(1<<1); // LO
     } else {
-        writePinHigh(B1);
+        PORTB |= (1<<1); // HI
     }
+}
+
+
+void matrix_init_user(void) {
+
+}
+
+void matrix_scan_user(void) {
+
 }

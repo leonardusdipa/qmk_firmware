@@ -87,6 +87,14 @@ void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
   float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
 #endif
 
+void matrix_init_user(void) {
+
+}
+
+void matrix_scan_user(void) {
+
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case LOWER:
@@ -158,4 +166,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
   }
   return true;
+}
+
+void led_set_user(uint8_t usb_led) {
+
 }
