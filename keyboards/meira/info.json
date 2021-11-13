@@ -2,10 +2,8 @@
     "keyboard_name": "Meira",
     "url": "",
     "maintainer": "colemarkham",
-    "layout_aliases": {
-        "KEYMAP": "LAYOUT_ortho_4x12",
-        "LAYOUT": "LAYOUT_ortho_4x12"
-    },
+    "width": 12,
+    "height": 4,
     "layouts": {
         "LAYOUT_ortho_4x12": {
             "layout": [

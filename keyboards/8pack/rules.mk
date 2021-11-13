@@ -2,12 +2,19 @@
 MCU = atmega32u4
 
 # Bootloader selection
+#   Teensy       halfkay
+#   Pro Micro    caterina
+#   Atmel DFU    atmel-dfu
+#   LUFA DFU     lufa-dfu
+#   QMK DFU      qmk-dfu
+#   ATmega32A    bootloadHID
+#   ATmega328P   USBasp
 BOOTLOADER = caterina
 
 # Build Options
 #   comment out to disable the options.
 #
-BOOTMAGIC_ENABLE = no       # Enable Bootmagic Lite
+BOOTMAGIC_ENABLE = no  # Virtual DIP switch configuration
 MOUSEKEY_ENABLE  = no  # Mouse keys
 EXTRAKEY_ENABLE  = no  # Audio control and System control
 CONSOLE_ENABLE   = yes # Console for debug
@@ -17,6 +24,6 @@ NKRO_ENABLE      = no  # USB Nkey Rollover - if this doesn't work, see here: htt
 BACKLIGHT_ENABLE = yes # Enable keyboard backlight functionality
 AUDIO_ENABLE     = no
 RGBLIGHT_ENABLE  = yes
-OLED_ENABLE = no
+OLED_DRIVER_ENABLE = no
 
 DEFAULT_FOLDER = 8pack/rev12

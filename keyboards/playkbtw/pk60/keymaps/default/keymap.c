@@ -20,12 +20,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+void matrix_init_user(void) {
+}
+
+void matrix_scan_user(void) {
+}
+
 void led_set_user(uint8_t usb_led) {
-  if (usb_led & (1 << USB_LED_CAPS_LOCK)) {
-    setPinOutput(F4);
-    writePinLow(F4);
+
+  if (usb_led & (1 << USB_LED_NUM_LOCK)) {
+
   } else {
-    setPinInput(F4);
-    writePinLow(F4);
+
   }
+
+  if (usb_led & (1 << USB_LED_CAPS_LOCK)) {
+    DDRF |= (1 << 4); PORTF &= ~(1 << 4);
+  } else {
+    DDRF &= ~(1 << 4); PORTF &= ~(1 << 4);
+  }
+
+  if (usb_led & (1 << USB_LED_SCROLL_LOCK)) {
+
+  } else {
+
+  }
+
+  if (usb_led & (1 << USB_LED_COMPOSE)) {
+
+  } else {
+
+  }
+
+  if (usb_led & (1 << USB_LED_KANA)) {
+
+  } else {
+
+  }
+
 }

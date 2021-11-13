@@ -2,6 +2,8 @@
     "keyboard_name":  "bop",
     "url": "https://github.com/blewis308/BOP-Keyboard",
     "maintainer": "Fruit",
+    "width":  20.0,
+    "height": 6.0,
     "layouts": {
         "LAYOUT": {
             "layout": [

@@ -3,6 +3,8 @@
     "url": "afternoonlabs.com/breeze",
     "productId": "0x0002",
     "maintainer": "eithanshavit",
+    "width": 3,
+    "height": 2,
     "layouts": {
         "LAYOUT": {
             "layout": [

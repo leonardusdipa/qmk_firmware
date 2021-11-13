@@ -2,6 +2,8 @@
     "keyboard_name": "2Key2CrawlPad",
     "url": "",
     "maintainer": "qmk",
+    "width": 6.5,
+    "height": 2,
     "layouts": {
         "LAYOUT": {
             "layout": [

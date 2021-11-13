@@ -74,3 +74,11 @@ void matrix_init_user(void) {
   setPinOutput(F6);
   writePinLow(F6);
 }
+
+void matrix_scan_user(void) {
+
+}
+
+void led_set_user(uint8_t usb_led) {
+
+}

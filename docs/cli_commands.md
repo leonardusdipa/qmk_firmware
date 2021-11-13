@@ -17,7 +17,7 @@ qmk compile [-c] <configuratorExport.json>
 **Usage for Keymaps**:
 
 ```
-qmk compile [-c] [-e <var>=<value>] [-j <num_jobs>] -kb <keyboard_name> -km <keymap_name>
+qmk compile [-c] [-e <var>=<value>] -kb <keyboard_name> -km <keymap_name>
 ```
 
 **Usage in Keyboard Directory**:  
@@ -73,17 +73,6 @@ $ qmk compile -kb dz60
 ...
 ```
 
-**Parallel Compilation**:
-
-It is possible to speed up compilation by adding the `-j`/`--parallel` flag.
-```
-qmk compile -j <num_jobs> -kb <keyboard_name>
-```
-The `num_jobs` argument determines the maximum number of jobs that can be used. Setting it to zero will enable parallel compilation without limiting the maximum number of jobs.
-```
-qmk compile -j 0 -kb <keyboard_name>
-```
-
 ## `qmk flash`
 
 This command is similar to `qmk compile`, but can also target a bootloader. The bootloader is optional, and is set to `:flash` by default. To specify a different bootloader, use `-bl <bootloader>`. Visit the [Flashing Firmware](flashing.md) guide for more details of the available bootloaders.
@@ -93,13 +82,13 @@ This command is directory aware. It will automatically fill in KEYBOARD and/or K
 **Usage for Configurator Exports**:
 
 ```
-qmk flash [-bl <bootloader>] [-c] [-e <var>=<value>] [-j <num_jobs>] <configuratorExport.json>
+qmk flash [-bl <bootloader>] [-c] [-e <var>=<value>] <configuratorExport.json>
 ```
 
 **Usage for Keymaps**:
 
 ```
-qmk flash -kb <keyboard_name> -km <keymap_name> [-bl <bootloader>] [-c] [-e <var>=<value>] [-j <num_jobs>]
+qmk flash -kb <keyboard_name> -km <keymap_name> [-bl <bootloader>] [-c] [-e <var>=<value>]
 ```
 
 **Listing the Bootloaders**
@@ -118,23 +107,9 @@ This command lets you configure the behavior of QMK. For the full `qmk config` d
 qmk config [-ro] [config_token1] [config_token2] [...] [config_tokenN]
 ```
 
-## `qmk cd`
-
-This command opens a new shell in your `qmk_firmware` directory.
-
-Note that if you are already somewhere within `QMK_HOME` (for example, the `keyboards/` folder), nothing will happen.
-
-To exit out into the parent shell, simply type `exit`.
-
-**Usage**:
-
-```
-qmk cd
-```
-
 ## `qmk console`
 
-This command lets you connect to keyboard consoles to get debugging messages. It only works if your keyboard firmware has been compiled with `CONSOLE_ENABLE=yes`.
+This command lets you connect to keyboard consoles to get debugging messages. It only works if your keyboard firmware has been compiled with `CONSOLE_ENABLED=yes`.
 
 **Usage**:
 
@@ -305,12 +280,12 @@ qmk list-keymaps -kb planck/ez
 
 This command creates a new keyboard based on available templates.
 
-Any arguments that are not provided will prompt for input. If `-u` is not passed and `user.name` is set in .gitconfig, it will be used as the default username in the prompt.
+This command will prompt for input to guide you though the generation process.
 
 **Usage**:
 
 ```
-qmk new-keyboard [-kb KEYBOARD] [-t {avr,ps2avrgb}] -u USERNAME
+qmk new-keyboard
 ```
 
 ## `qmk new-keymap`
@@ -339,18 +314,7 @@ qmk clean [-a]
 
 # Developer Commands
 
-## `qmk format-text`
-
-This command formats text files to have proper line endings. 
-
-Every text file in the repository needs to have Unix (LF) line ending.
-If you are working on **Windows**, you must ensure that line endings are corrected in order to get your PRs merged.
-
-```
-qmk format-text
-```
-
-## `qmk format-c`
+## `qmk cformat`
 
 This command formats C code using clang-format. 
 
@@ -361,38 +325,35 @@ Run it with `-a` to format all core code, or pass filenames on the command line 
 **Usage for specified files**:
 
 ```
-qmk format-c [file1] [file2] [...] [fileN]
+qmk cformat [file1] [file2] [...] [fileN]
 ```
 
 **Usage for all core files**:
 
 ```
-qmk format-c -a
+qmk cformat -a
 ```
 
 **Usage for only changed files against origin/master**:
 
 ```
-qmk format-c
+qmk cformat
 ```
 
 **Usage for only changed files against branch_name**:
 
 ```
-qmk format-c -b branch_name
+qmk cformat -b branch_name
 ```
 
 ## `qmk docs`
 
 This command starts a local HTTP server which you can use for browsing or improving the docs. Default port is 8936.
-Use the `-b`/`--browser` flag to automatically open the local webserver in your default browser.
-
-This command runs `docsify serve` if `docsify-cli` is installed (which provides live reload), otherwise Python's builtin HTTP server module will be used.
 
 **Usage**:
 
 ```
-qmk docs [-b] [-p PORT]
+qmk docs [-p PORT]
 ```
 
 ## `qmk generate-docs`
@@ -407,7 +368,7 @@ qmk generate-docs
 
 ## `qmk generate-rgb-breathe-table`
 
-This command generates a lookup table (LUT) header file for the [RGB Lighting](feature_rgblight.md) feature's breathing animation. Place this file in your keyboard or keymap directory as `rgblight_breathe_table.h` to override the default LUT in `quantum/rgblight/`.
+This command generates a lookup table (LUT) header file for the [RGB Lighting](feature_rgblight.md) feature's breathing animation. Place this file in your keyboard or keymap directory as `rgblight_breathe_table.h` to override the default LUT in `quantum/`.
 
 **Usage**:
 
@@ -437,14 +398,14 @@ $ qmk kle2json -f kle.txt -f
 Ψ Wrote out to info.json
 ```
 
-## `qmk format-python`
+## `qmk pyformat`
 
 This command formats python code in `qmk_firmware`.
 
 **Usage**:
 
 ```
-qmk format-python
+qmk pyformat
 ```
 
 ## `qmk pytest`

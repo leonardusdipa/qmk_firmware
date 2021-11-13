@@ -2,6 +2,8 @@
     "keyboard_name": "Latin47ble",
     "url": "",
     "maintainer": "latincompass",
+    "width": 12,
+    "height": 4,
     "layouts": {
         "LAYOUT_planck_mit": {
             "layout": [

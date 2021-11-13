@@ -14,14 +14,12 @@ ENCODER_ENABLE = no
 LTO_ENABLE = no  # if firmware size over limit, try this option
 LED_ANIMATIONS = yes
 
-CUSTOM_DELAY = yes
-
 ifneq ($(strip $(HELIX)),)
   define KEYMAP_OPTION_PARSE
-    # parse 'dispoff', 'consle', 'back', 'oled', 'no-ani', 'mini-ani', 'lto', 'no-lto', 'no-enc', 'scan', 'scan-api'
+    # parse 'dispoff', 'consle', 'back', 'oled', 'no-ani', 'mini-ani', 'lto', 'no-lto', 'no-enc', 'scan'
     $(if $(SHOW_PARCE),$(info parse .$1.))  #debug
     ifeq ($(strip $1),dispoff)
-        OLED_ENABLE = no
+        OLED_DRIVER_ENABLE = no
         RGBLIGHT_ENABLE = no
     endif
     ifeq ($(strip $1),console)
@@ -40,7 +38,7 @@ ifneq ($(strip $(HELIX)),)
         ENCODER_ENABLE = no
     endif
     ifeq ($(strip $1),oled)
-        OLED_ENABLE = yes
+        OLED_DRIVER_ENABLE = yes
     endif
     ifeq ($(strip $1),back)
         RGBLIGHT_ENABLE = yes
@@ -65,11 +63,6 @@ ifneq ($(strip $(HELIX)),)
         # see docs/newbs_testing_debugging.md
         DEBUG_MATRIX_SCAN_RATE_ENABLE = yes
     endif
-    ifeq ($(strip $1),scan-api)
-        # use DEBUG_MATRIX_SCAN_RATE
-        # see docs/newbs_testing_debugging.md
-        DEBUG_MATRIX_SCAN_RATE_ENABLE = api
-    endif
   endef # end of KEYMAP_OPTION_PARSE
 
   COMMA=,
@@ -85,10 +78,6 @@ endif
 ifeq ($(strip $(LED_ANIMATIONS)), mini)
     OPT_DEFS += -DLED_ANIMATIONS
     OPT_DEFS += -DLED_ANIMATIONS_LEVEL=1
-endif
-
-ifeq ($(strip $(CUSTOM_DELAY)),yes)
-    SRC += matrix_output_unselect_delay.c
 endif
 
 ifeq ($(strip $(DEBUG_CONFIG)), yes)
